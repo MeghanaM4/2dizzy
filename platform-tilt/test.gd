@@ -1,23 +1,33 @@
 extends Node
 
-
-var udp_server = PacketPeerUDP.new()
-var port = 5005
-
+var serial: GdSerial
+var buffer: String = ""
 
 func _ready():
-	udp_server.bind(port)
-	print("Listening for tilt data on port ", port)
+	serial = GdSerial.new()
+	
+	var ports: Dictionary = serial.list_ports()
+	print("Available ports: ", ports)
+	
+	serial.set_port("/dev/ttyACM0")
+	serial.set_baud_rate(115200)
+	if serial.open():
+		print("Connected!")
 
-func _process(delta):
-	if udp_server.get_available_packet_count() > 0:
-		var packet = udp_server.get_packet()
-		var data_string = packet.get_string_from_utf8()
+func _process(_delta):
+	if serial.is_open():
+		var bytes_available = serial.bytes_available()
+		if bytes_available > 0:
+			var data = serial.read(bytes_available)
+			buffer += data.get_string_from_utf8()
+			
+			while "\n" in buffer:
+				var line_end = buffer.find("\n")
+				var line = buffer.substr(0, line_end)
+				buffer = buffer.substr(line_end + 1)
+				
+				print("Received line: ", line)
 
-		var json = JSON.new()
-		var parse_result = json.parse(data_string)
-
-		if parse_result == OK:
-			var data = json.data
-			var tilt_angle = data.x * 15.0
-			print(data)
+func _exit_tree():
+	if serial and serial.is_open():
+		serial.close()
