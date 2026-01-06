@@ -30,7 +30,6 @@ try:
                 #send UDP packet
                 data = {
                     'x': sensor_state,
-                    'y': 0.0
                 }
                 message = json.dumps(data).encode()
                 sock.sendto(message, (UDP_IP, UDP_PORT))
@@ -42,10 +41,6 @@ try:
                 
 except serial.SerialException as e:
     print(f"\nError: Could not open serial port {SERIAL_PORT}")
-    print("Make sure:")
-    print("1. Arduino is connected via USB")
-    print("2. Correct port is specified")
-    print("3. No other program is using the port")
     print(f"\nError details: {e}")
     
 except KeyboardInterrupt:
