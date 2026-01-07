@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 
-const SPEED: float = 600.0
-const JUMP_VELOCITY: float = -1000.0
+const SPEED: float = 200.0
+const JUMP_VELOCITY: float = -333.0
 
 var tilt_dir: float = 0.0
 var tilt_velocity: float = 0.0
@@ -15,20 +15,21 @@ var buffer: String = ""
 var jump_time: float = 0
 var joystick: float = 0
 
-@export var list_ports_parent: VBoxContainer
-@export var panel: Panel
-@export var no_gamepad_btn: Button
+@export var world: World
+
 signal port_selected(port: String)
+
+@onready var jump_particles: CPUParticles2D = $JumpParticles
 
 
 func _ready() -> void:
+	$"../Parallax2D/Milkyway".position = get_viewport_rect().size / 2.0
 	serial = GdSerial.new()
 	
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	panel.process_mode = Node.PROCESS_MODE_ALWAYS
 	get_tree().paused = true
 	
-	no_gamepad_btn.pressed.connect(func() -> void: port_selected.emit("none"))
+	world.no_gamepad_btn.pressed.connect(func() -> void: port_selected.emit("none"))
 	var ports: Dictionary = serial.list_ports()
 	for port in ports.values():
 		if "port_name" in port:
@@ -38,9 +39,9 @@ func _ready() -> void:
 				port_selected.emit(port["port_name"])
 				print(port["port_name"])
 			)
-			list_ports_parent.add_child(btn)
+			world.list_ports_parent.add_child(btn)
 	var port: String = await port_selected
-	panel.visible = false
+	world.panel.visible = false
 	get_tree().paused = false
 	process_mode = Node.PROCESS_MODE_INHERIT
 	if port != "none":
@@ -86,9 +87,9 @@ func _physics_process(delta: float) -> void:
 	up_direction = Vector2.from_angle(rotation - PI / 2.0)
 	velocity = velocity.rotated(-rotation)
 	if not is_on_floor():
-		velocity += get_gravity() * delta * (4.0 if velocity.y > 0 else 2.5)
+		velocity += get_gravity() * delta * (1.333 if velocity.y > 0 else 0.833)
 	if (Input.is_action_just_pressed("jump") or jump_time >= 0.0) and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+		jump()
 	
 	if serial.is_open():
 		if joystick:
@@ -102,5 +103,9 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 	velocity = velocity.rotated(rotation)
-	$ColorRect.rotation = up_direction.angle() - rotation
 	move_and_slide()
+
+
+func jump() -> void:
+	velocity.y = JUMP_VELOCITY
+	jump_particles.restart()
