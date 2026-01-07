@@ -1,3 +1,5 @@
+#define joystick_x A0
+
 int TILTPIN = 7;
 int TRIG = 4;
 int ECHO = 3;
@@ -15,7 +17,8 @@ void setup() {
 
 void loop() {
   //Serial.print("Tilt: ")
-  Serial.println(digitalRead(TILTPIN));
+  //Serial.println(digitalRead(TILTPIN));
+
   // if(digitalRead(TILTPIN)) {
   //   Serial.println("TILTED");
   // } else {
@@ -32,10 +35,16 @@ void loop() {
   distance = (duration * 0.0343) / 2;
   //Serial.println(distance);
 
-  if(distance < 5) {
-    Serial.println("JUMP");
-    delay(100);
-  }
+  float joystick_map = map(analogRead(joystick_x), 0, 1023, -1000, 1000);
+
+  Serial.print("{\"tilt\": ");
+  Serial.print(digitalRead(TILTPIN));
+  Serial.print(", \"jump\": ");
+  Serial.print(distance < 5);
+  Serial.print(", \"joystick\": ");
+  Serial.print(joystick_map/1000);
+  Serial.println("}");
+
 
   delay(20);
 }
