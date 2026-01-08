@@ -9,4 +9,4 @@ Video demo [here](https://youtu.be/FO6N_fKZgIg)
 
 ## Circuit
 <img src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/10984e6bc6cb3949_image.png" style="width:500px">
-Uses a KY-017 mercury tilt switch, HC-SR04 ultrasonic sensor, KY-023 joystick, and an Arduino UNO. Plug your Arduino UNO in and flash it with the firmware found in the "firmware" folder in this repo. Then, open the 2dizzy on itch.io and begin playing
+Uses a KY-017 mercury tilt switch, HC-SR04 ultrasonic sensor, KY-023 joystick, and an Arduino UNO. Plug your Arduino UNO in and flash it with the firmware found in the "firmware" folder in this repo. Clone this repo, open the game in Godot 4, and run it.
