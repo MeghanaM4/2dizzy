@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ins7nrc78lrn"
+path="res://.godot/imported/Paolo 2.mp3-eb7f323560b68d671f67230502d7e29e.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/Paolo 2.mp3"
+dest_files=["res://.godot/imported/Paolo 2.mp3-eb7f323560b68d671f67230502d7e29e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
