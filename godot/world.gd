@@ -13,6 +13,6 @@ func _ready() -> void:
 
 
 func _on_powerup_collected(powerup: Powerup) -> void:
-	powerup.get_parent().remove_child(powerup)
+	powerup.get_parent().remove_child.call_deferred(powerup)
 	powerup.queue_free()
 	print("Powerup Collected!")
