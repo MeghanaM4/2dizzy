@@ -1,11 +1,30 @@
-[gd_scene load_steps=9 format=4 uid="uid://ujfrevxs34c5"]
+[gd_scene load_steps=28 format=4 uid="uid://ujfrevxs34c5"]
 
 [ext_resource type="Script" uid="uid://dqc6uk0gif76d" path="res://world.gd" id="1_aqk2v"]
 [ext_resource type="Texture2D" uid="uid://d4c6pv5nn0sdx" path="res://assets/milkyway.png" id="1_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://cpx58j3865vul" path="res://player.tscn" id="2_aqk2v"]
+[ext_resource type="AudioStream" uid="uid://dvy1wtq1ohqn2" path="res://assets/sfx/Belgian_dude.mp3" id="2_mc2jv"]
 [ext_resource type="Texture2D" uid="uid://bkelhbgs41kba" path="res://assets/tilmap-demo.png" id="3_036b0"]
+[ext_resource type="AudioStream" uid="uid://cgd5d8l3age3m" path="res://assets/sfx/British1.mp3" id="3_bo7i5"]
+[ext_resource type="AudioStream" uid="uid://de5yxhjnvqfp2" path="res://assets/sfx/British2.mp3" id="4_4h6ng"]
 [ext_resource type="Texture2D" uid="uid://bs7hygbsv0gm7" path="res://assets/arrow.png" id="5_036b0"]
+[ext_resource type="AudioStream" uid="uid://cys20aakkrtl7" path="res://assets/sfx/Clay.mp3" id="5_o3ebs"]
 [ext_resource type="PackedScene" uid="uid://ctjv5vxwsl335" path="res://powerup.tscn" id="6_dwbse"]
+[ext_resource type="AudioStream" uid="uid://c48fgvqrsv2dx" path="res://assets/sfx/Euan.mp3" id="6_k83mh"]
+[ext_resource type="AudioStream" uid="uid://bqsmrucn5p67b" path="res://assets/sfx/Herby.mp3" id="7_qktwf"]
+[ext_resource type="AudioStream" uid="uid://b8tf4d215x1p0" path="res://assets/sfx/Kacper.mp3" id="8_bh8nc"]
+[ext_resource type="AudioStream" uid="uid://ce6lwcp07a7f1" path="res://assets/sfx/Leo2.mp3" id="9_jjr1n"]
+[ext_resource type="AudioStream" uid="uid://c7l68gr7qrt7c" path="res://assets/sfx/Leo.mp3" id="10_gggvi"]
+[ext_resource type="AudioStream" uid="uid://ba0w20efcwn8u" path="res://assets/sfx/One.mp3" id="11_w44yn"]
+[ext_resource type="AudioStream" uid="uid://ins7nrc78lrn" path="res://assets/sfx/Paolo 2.mp3" id="12_6ah6f"]
+[ext_resource type="AudioStream" uid="uid://dnidtqejmj734" path="res://assets/sfx/Paolo.mp3" id="13_g1i3r"]
+[ext_resource type="AudioStream" uid="uid://nwu2nix4760w" path="res://assets/sfx/Sebastien.mp3" id="14_my276"]
+[ext_resource type="AudioStream" uid="uid://byjkixa6gdgkf" path="res://assets/sfx/Vamos.mp3" id="15_yx0jh"]
+[ext_resource type="AudioStream" uid="uid://o22s3ywonun" path="res://assets/sfx/Weouweouweou.mp3" id="16_1ew0l"]
+[ext_resource type="AudioStream" uid="uid://cggld6xqq0p8w" path="res://assets/sfx/Weow2.mp3" id="17_ryup7"]
+[ext_resource type="AudioStream" uid="uid://kgjqafahci5n" path="res://assets/sfx/Wheeeee.mp3" id="18_ytpkv"]
+[ext_resource type="AudioStream" uid="uid://bn5dhdrer8sti" path="res://assets/sfx/wop.mp3" id="19_jas3d"]
+[ext_resource type="AudioStream" uid="uid://d211evc6fuslv" path="res://assets/sfx/wowww.mp3" id="20_7htu6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dwbse"]
 texture = ExtResource("3_036b0")
@@ -149,6 +168,7 @@ sources/1 = SubResource("TileSetAtlasSource_dwbse")
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_aqk2v")
+powerup_sfx = Array[AudioStream]([ExtResource("2_mc2jv"), ExtResource("3_bo7i5"), ExtResource("4_4h6ng"), ExtResource("5_o3ebs"), ExtResource("6_k83mh"), ExtResource("7_qktwf"), ExtResource("8_bh8nc"), ExtResource("9_jjr1n"), ExtResource("10_gggvi"), ExtResource("11_w44yn"), ExtResource("12_6ah6f"), ExtResource("13_g1i3r"), ExtResource("14_my276"), ExtResource("15_yx0jh"), ExtResource("16_1ew0l"), ExtResource("17_ryup7"), ExtResource("18_ytpkv"), ExtResource("19_jas3d"), ExtResource("20_7htu6")])
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
 visible = false
@@ -312,3 +332,5 @@ position = Vector2(3629, -1)
 
 [node name="Powerup19" parent="Powerups" instance=ExtResource("6_dwbse")]
 position = Vector2(3609, -352)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

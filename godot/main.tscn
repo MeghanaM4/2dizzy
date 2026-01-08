@@ -25,10 +25,12 @@ canvas_item_default_texture_filter = 0
 size = Vector2i(640, 360)
 render_target_update_mode = 4
 
-[node name="World" parent="WorldCanvasLayer/SubViewportContainer/SubViewport" node_paths=PackedStringArray("list_ports_parent", "panel", "no_gamepad_btn") instance=ExtResource("2_h2yge")]
+[node name="World" parent="WorldCanvasLayer/SubViewportContainer/SubViewport" node_paths=PackedStringArray("list_ports_parent", "panel", "no_gamepad_btn", "time_text", "powerups_text") instance=ExtResource("2_h2yge")]
 list_ports_parent = NodePath("../../../../UICanvasLayer/Panel/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer")
 panel = NodePath("../../../../UICanvasLayer/Panel")
 no_gamepad_btn = NodePath("../../../../UICanvasLayer/Panel/VBoxContainer/HBoxContainer/Button")
+time_text = NodePath("../../../../UICanvasLayer/VBoxContainer/TimeText")
+powerups_text = NodePath("../../../../UICanvasLayer/VBoxContainer/PowerupsText")
 
 [node name="UICanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 3
@@ -104,3 +106,21 @@ vertical_alignment = 2
 offset_right = 210.0
 offset_bottom = 140.0
 texture = ExtResource("4_1bvp3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UICanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TimeText" type="RichTextLabel" parent="UICanvasLayer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+fit_content = true
+
+[node name="PowerupsText" type="RichTextLabel" parent="UICanvasLayer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+fit_content = true
