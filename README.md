@@ -1,7 +1,7 @@
 # 2dizzy
 A 2-player tilting platformer game that messes with your head. Player 1 controls the tilt of the world with a tilt switch attached to their hand (or with the "K" key if you're not using a gamepad) and makes the character jump by putting their hand close to the ultrasonic sensor. Player 2 can move the character backwards and forwards with the joystick.              
 
-Play on itch.io [here](https://onlyth3best.itch.io/2dizzy)
+Play on itch.io [here](https://onlyth3best.itch.io/2dizzy)                   
 Video demo [here](https://youtu.be/FO6N_fKZgIg)
 
 ## Hardware Setup
